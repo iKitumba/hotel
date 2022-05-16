@@ -1,0 +1,76 @@
+#reservasPage {
+  display: flex;
+  flex-direction: column;
+  color: #333333;
+}
+
+#reservasPage > header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#reservasPage > header h1 {
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #333333 !important;
+}
+
+#reservasPage > header h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #999999 !important;
+}
+
+.addReservaButton {
+  width: 3rem;
+  height: 3rem;
+  clip-path: circle();
+  border: none;
+  background-color: #6f4ec9;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #f7f7f7;
+}
+
+
+#reservasPage > table {
+  background-color: #ecf1f1;
+  padding: 1rem;
+  font-size: 1rem;
+  border-collapse: collapse;
+  max-width: 100%;
+  box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, 0.205);
+}
+
+#reservasPage > table thead {
+  font-weight: bold;
+}
+
+table tr{
+  border-bottom: 1px solid red;
+}
+
+tr td {
+  padding: 1rem;
+  border: 2px solid #f7f7f7;
+  border-right: none;
+  border-left: none;
+}
+
+/*
+  Media Query
+*/
+
+@media (max-width: 940px) {
+  .hidden940 {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hidden600 {
+    display: none;
+  }
+}

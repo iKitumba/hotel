@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login IHotel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased !important;
+      text-rendering: optimizeLegibility;
+      font-family: Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #6f4ec91f;
+    }
+
+    .loginFormWrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      align-self: flex-start;
+      width: 90%;
+      margin: 0 auto;
+      color: #1e133d;
+    }
+
+    form {
+      width: 400px;
+      max-width: 100%;
+      min-height: 50vh;
+      margin: 0 auto;
+      border-radius: 0.625rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    label {
+      width: 90%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .5rem;
+      border-radius: .2rem;
+      border: 2px solid rgba(255, 255, 255, 0.253);
+    }
+
+    input {
+      width: 95%;
+      padding: .4rem 1rem;
+      border: none;
+      font-size: 0.875rem;
+    }
+
+    input:focus {
+      background-color: #e8e4f7;
+    }
+
+    input::placeholder {
+      color: #aaaaaa;
+    }
+
+    button {
+      width: 90%;
+      height: 54px;
+      padding: .4rem 1rem;
+      border: none;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #dddddd;
+      background: #6f4ec9;
+      border-radius: .2rem;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="loginFormWrapper">
+    <form method="POST" action="./actions/login.php">
+      <h1>IHotel</h1>
+      <label>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+          <g stroke-linecap="square" stroke-width="2" fill="none" stroke="#999999" stroke-linejoin="miter" class="nc-icon-wrapper" stroke-miterlimit="10">
+            <path d="M15,15H9 c-3.314,0-6,2.686-6,6v1c0,0,3.125,1,9,1s9-1,9-1v-1C21,17.686,18.314,15,15,15z"></path>
+            <path d="M7,6c0-2.761,2.239-5,5-5 s5,2.239,5,5s-2.239,6-5,6S7,8.761,7,6z" stroke="#999999"></path>
+          </g>
+        </svg>
+        <input type="text" name="username" placeholder="Digite o seu username" required />
+      </label>
+      <label>
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g fill="none" class="nc-icon-wrapper">
+            <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z" fill="#999999"></path>
+          </g>
+        </svg>
+        <input type="password" name="password" placeholder="Sua senha" required />
+      </label>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+</body>
+</html>
