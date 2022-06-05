@@ -19,6 +19,6 @@
         echo "<script> setTimeout(() =>window.location = `../index.php?p=funcionarios`, 3000)</script>";
       }
     } else {
-      echo "<script>window.location = `../login.html`</script>";
+      echo "<script>window.location = `../login.php`</script>";
     }
 ?>

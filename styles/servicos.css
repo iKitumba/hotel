@@ -71,7 +71,7 @@
 }
 
 .mostrar .modal {
-  animation: modal .3s;
+  animation: modal 0.3s;
 }
 
 .fechar {
@@ -87,7 +87,7 @@
   color: white;
   font-family: JetBrains Mono, monospace;
   cursor: pointer;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .modal > form {
@@ -117,7 +117,7 @@ input[type="text"] {
   flex-wrap: wrap;
 }
 
-.custo_quantidade input{
+.custo_quantidade input {
   flex: 1;
   height: 2.5rem;
   padding: 1rem;
@@ -148,14 +148,14 @@ input[type="text"] {
   font-size: 1rem;
   border-collapse: collapse;
   max-width: 100%;
-  box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, 0.205);
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.205);
 }
 
 #servicosPage > table thead {
   font-weight: bold;
 }
 
-table tr{
+table tr {
   border-bottom: 1px solid red;
 }
 
@@ -181,7 +181,9 @@ tr td {
     width: 100%;
   }
 
-  input[type="text"], input[type="email"], select[name="tipo_hospede"] {
+  input[type="text"],
+  input[type="email"],
+  select[name="tipo_hospede"] {
     width: 100%;
   }
 

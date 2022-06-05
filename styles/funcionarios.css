@@ -34,20 +34,24 @@
   color: #f7f7f7;
 }
 
-#funcionariosPage > table {
+#funcionariosPage > .tableWrapper {
+  overflow-x: auto;
+}
+
+#funcionariosPage table {
   background-color: #ecf1f1;
   padding: 1rem;
   font-size: 1rem;
   border-collapse: collapse;
   max-width: 100%;
-  box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, 0.205);
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.205);
 }
 
-#funcionariosPage > table thead {
+#funcionariosPage table thead {
   font-weight: bold;
 }
 
-table tr{
+table tr {
   border-bottom: 1px solid red;
 }
 
@@ -73,7 +77,9 @@ tr td {
     width: 100%;
   }
 
-  input[type="text"], input[type="email"], select[name="tipo_hospede"] {
+  input[type="text"],
+  input[type="email"],
+  select[name="tipo_hospede"] {
     width: 100%;
   }
 

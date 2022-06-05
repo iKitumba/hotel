@@ -76,7 +76,7 @@ img {
 }
 
 .mostrar .modal {
-  animation: modal .3s;
+  animation: modal 0.3s;
 }
 
 .fechar {
@@ -92,7 +92,7 @@ img {
   color: white;
   font-family: JetBrains Mono, monospace;
   cursor: pointer;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .modal > form {
@@ -105,7 +105,8 @@ img {
   padding: 1rem;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"],
+input[type="email"] {
   width: 100%;
   height: 2.5rem;
   padding: 1rem;
@@ -135,7 +136,7 @@ select[name="tipo_hospede"] {
   flex-direction: column;
   width: 40%;
   font-size: 1rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border: 2px solid #6f4ec9;
 }
 
@@ -171,14 +172,14 @@ input[type="radio"] {
   font-size: 1rem;
   border-collapse: collapse;
   max-width: 100%;
-  box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, 0.205);
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.205);
 }
 
 #hospedesPage > table thead {
   font-weight: bold;
 }
 
-table tr{
+table tr {
   border-bottom: 1px solid red;
 }
 
@@ -204,7 +205,9 @@ tr td {
     width: 100%;
   }
 
-  input[type="text"], input[type="email"], select[name="tipo_hospede"] {
+  input[type="text"],
+  input[type="email"],
+  select[name="tipo_hospede"] {
     width: 100%;
   }
 

@@ -1,24 +1,24 @@
 <?php
-  require(__DIR__."/../actions/conexao.php");
-    session_start();
+require(__DIR__ . "/../actions/conexao.php");
+session_start();
 
-    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])){
-
-      }else {
-        echo "<script>window.location = `../login.html`</script>";
-      }
+if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+} else {
+  echo "<script>window.location = `../login.php`</script>";
+}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/ihotel-icon.svg" type="image/svg+xml">
   <title>Criar Reserva</title>
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -58,7 +58,7 @@
       font-weight: bold;
     }
 
-    .formCriarReserva > h1 {
+    .formCriarReserva>h1 {
       font-size: 3rem;
       align-self: flex-start;
     }
@@ -112,57 +112,83 @@
       margin: 1rem 0;
       border: none;
     }
+
+    .pace {
+      -webkit-pointer-events: none;
+      pointer-events: none;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .pace-inactive {
+      display: none;
+    }
+
+    .pace .pace-progress {
+      background: #6f4ec9;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      height: 2px;
+    }
   </style>
 </head>
+
 <body>
-    <form class="formCriarReserva" action="../actions/criarReserva.php">
-        <h1>Criando reserva</h1>
-        <label>
-          Código para a reserva
-          <input type="text" name="codigo" required>
-        </label>
-        <label>
-          Data de entrada
-          <input type="date" name="data_entrada" required>
-        </label>
-        <label>
-          Data prevista para saída
-          <input type="date" name="data_saida" required>
-        </label>
-        <fieldset>
-          <legend>Número do quarto</legend>
-          <select name="quarto_id">
-            <?php
-              $fecthQuartos = $conexao->prepare("SELECT * FROM quartos");
-              $fecthQuartos->execute();
-              $quartos = $fecthQuartos->fetchAll(PDO::FETCH_ASSOC);
-              for($i = 0; $i < sizeof($quartos); $i++):
-                $quartoActual = $quartos[$i];
-            ?>
-              <option value="<?php echo $quartoActual["id"] ?>">
-                <?php echo $quartoActual["numero"] ?>
-              </option>
-            <?php endfor ?>
-          </select>
-        </fieldset>
-        <fieldset>
-          <legend>Nome do hospede</legend>
-          <select name="hospede_id">
-            <?php
-              $fecthHospedes = $conexao->prepare("SELECT * FROM hospedes");
-              $fecthHospedes->execute();
-              $hospedes = $fecthHospedes->fetchAll(PDO::FETCH_ASSOC);
-              for($i = 0; $i < sizeof($hospedes); $i++):
-                $hospedeActual = $hospedes[$i];
-                print_r($hospedeActual);
-            ?>
-              <option value="<?php echo $hospedeActual["id"]; ?>">
-                <?php echo $hospedeActual["nome"]; ?>
-              </option>
-            <?php endfor ?>
-          </select>
-        </fieldset>
-        <button type="submit" class="reservarButton">Reservar</button>
-    </form>
+  <form class="formCriarReserva" action="../actions/criarReserva.php">
+    <h1>Criando reserva</h1>
+    <label>
+      Código para a reserva
+      <input type="text" name="codigo" required>
+    </label>
+    <label>
+      Data de entrada
+      <input type="date" name="data_entrada" required>
+    </label>
+    <label>
+      Data prevista para saída
+      <input type="date" name="data_saida" required>
+    </label>
+    <fieldset>
+      <legend>Número do quarto</legend>
+      <select name="quarto_id">
+        <?php
+        $fecthQuartos = $conexao->prepare("SELECT * FROM quartos");
+        $fecthQuartos->execute();
+        $quartos = $fecthQuartos->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < sizeof($quartos); $i++) :
+          $quartoActual = $quartos[$i];
+        ?>
+          <option value="<?php echo $quartoActual["id"] ?>">
+            <?php echo $quartoActual["numero"] ?>
+          </option>
+        <?php endfor ?>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>Nome do hospede</legend>
+      <select name="hospede_id">
+        <?php
+        $fecthHospedes = $conexao->prepare("SELECT * FROM hospedes");
+        $fecthHospedes->execute();
+        $hospedes = $fecthHospedes->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < sizeof($hospedes); $i++) :
+          $hospedeActual = $hospedes[$i];
+          print_r($hospedeActual);
+        ?>
+          <option value="<?php echo $hospedeActual["id"]; ?>">
+            <?php echo $hospedeActual["nome"]; ?>
+          </option>
+        <?php endfor ?>
+      </select>
+    </fieldset>
+    <button type="submit" class="reservarButton">Reservar</button>
+  </form>
+  <script src="../modules/pace.min.js"></script>
 </body>
+
 </html>

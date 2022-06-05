@@ -15,7 +15,7 @@
         }
       }
        else {
-        echo "<script>window.location = `../login.html`</script>";
+        echo "<script>window.location = `../login.php`</script>";
       }
 ?>
 

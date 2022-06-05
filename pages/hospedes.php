@@ -1,5 +1,5 @@
 <?php
-  require(__DIR__."/../actions/conexao.php");
+require(__DIR__ . "/../actions/conexao.php");
 ?>
 
 <section id="hospedesPage">
@@ -23,38 +23,38 @@
       </tr>
     </thead>
     <?php
-      $fecthHospedes = $conexao->prepare("SELECT * FROM tipos_hospedes JOIN hospedes ON tipos_hospedes.id = hospedes.tipo_hospede ORDER BY nome");
+    $fecthHospedes = $conexao->prepare("SELECT * FROM tipos_hospedes JOIN hospedes ON tipos_hospedes.id = hospedes.tipo_hospede ORDER BY nome");
 
-      $fecthHospedes->execute();
-      $hospedes = $fecthHospedes->fetchAll(PDO::FETCH_ASSOC);
-      for($i = 0; $i < sizeof($hospedes); $i++):
-        $hospedeActual = $hospedes[$i];
-    ?>      
-    <tr>
-      <td><?php echo $hospedeActual['nome']; ?></td>
-      <td><a href="tel:+<?php echo $hospedeActual['contacto']; ?>"><?php echo $hospedeActual['contacto']; ?></a></td>
-      <td class="hidden940"><?php echo $hospedeActual['bi']; ?></td>
-      <td class="hidden940"><?php echo $hospedeActual['genero']; ?></td>
-      <td class="hidden940"><?php echo $hospedeActual['titulo']; ?></td>
-      <td>
-        <a href="pages/editHospede.php?hospede_id=<?php echo $hospedeActual['id'] ?>">
-          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g fill="none" class="nc-icon-wrapper">
-              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#6f4ec9"></path>
-            </g>
-          </svg>
-        </a>
-      </td>
-      <td class="hidden600">
-        <a href="actions/deleteHospede.php?hospede_id=<?php echo $hospedeActual['id'] ?>">
-          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g fill="none" class="nc-icon-wrapper">
-              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#dc143c"></path>
-            </g>
-          </svg>
-        </a>
-      </td>
-    </tr>
+    $fecthHospedes->execute();
+    $hospedes = $fecthHospedes->fetchAll(PDO::FETCH_ASSOC);
+    for ($i = 0; $i < sizeof($hospedes); $i++) :
+      $hospedeActual = $hospedes[$i];
+    ?>
+      <tr>
+        <td><?php echo $hospedeActual['nome']; ?></td>
+        <td><a href="tel:+<?php echo $hospedeActual['contacto']; ?>"><?php echo $hospedeActual['contacto']; ?></a></td>
+        <td class="hidden940"><?php echo $hospedeActual['bi']; ?></td>
+        <td class="hidden940"><?php echo $hospedeActual['genero']; ?></td>
+        <td class="hidden940"><?php echo $hospedeActual['titulo']; ?></td>
+        <td>
+          <a href="pages/editHospede.php?hospede_id=<?php echo $hospedeActual['id'] ?>">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g fill="none" class="nc-icon-wrapper">
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#6f4ec9"></path>
+              </g>
+            </svg>
+          </a>
+        </td>
+        <td class="hidden600">
+          <a href="actions/deleteHospede.php?hospede_id=<?php echo $hospedeActual['id'] ?>">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g fill="none" class="nc-icon-wrapper">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#dc143c"></path>
+              </g>
+            </svg>
+          </a>
+        </td>
+      </tr>
     <?php endfor ?>
   </table>
   <div id="modal-hospede" class="modal-container">
@@ -66,7 +66,7 @@
         <input type="text" name="telefone" placeholder="Telefone" required>
         <input type="text" name="bi" placeholder="BI" required>
         <div class="genero">
-          <label> 
+          <label>
             <input type="radio" name="genero" value="Masculino" checked> Masculino
           </label>
           <label>
@@ -75,14 +75,14 @@
         </div>
         <select name="tipo_hospede">
           <?php
-              $query = $conexao->prepare("SELECT * FROM tipos_hospedes");
+          $query = $conexao->prepare("SELECT * FROM tipos_hospedes");
 
-              $query->execute();
-              $users = $query->fetchAll(PDO::FETCH_ASSOC);
-              for($i = 0; $i < sizeof($users); $i++):
-                $usuarioAtual = $users[$i];
+          $query->execute();
+          $users = $query->fetchAll(PDO::FETCH_ASSOC);
+          for ($i = 0; $i < sizeof($users); $i++) :
+            $usuarioAtual = $users[$i];
           ?>
-          <option value=<?php echo $usuarioAtual["id"]?>><?php echo $usuarioAtual['titulo'] ?></option>
+            <option value=<?php echo $usuarioAtual["id"] ?>><?php echo $usuarioAtual['titulo'] ?></option>
           <?php endfor ?>
         </select>
         <button type="submit" class="cadastrar">Cadastrar</button>
@@ -93,7 +93,7 @@
     function iniciaModal(modalID) {
       const modal = document.getElementById(modalID);
 
-      if(modal) {
+      if (modal) {
         modal.classList.add('mostrar');
 
         modal.addEventListener('click', (e) => {
@@ -107,6 +107,5 @@
     const botao = document.querySelector('.addHospedeButton');
 
     botao.addEventListener('click', () => iniciaModal('modal-hospede'));
-
   </script>
 </section>

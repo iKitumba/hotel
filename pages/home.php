@@ -1,5 +1,5 @@
 <?php
-
+require(__DIR__ . "/../actions/conexao.php");
 ?>
 
 <section>
@@ -42,62 +42,35 @@
     <div class="novosHopedes">
       <h1>Novos Hospedes</h1>
       <div class="listagemHopedes">
-        <div class="hospedeImgContainer">
-          <figure class="hospedeImage">
-            <div class="img">
-              <img src="./assets/images/joker.jpg" />
+        <?php
+        $fecthHospedes = $conexao->prepare("SELECT * FROM hospedes ORDER BY criado_em");
+
+        $fecthHospedes->execute();
+        $hospedes = $fecthHospedes->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < sizeof($hospedes); $i++) :
+          $hospedeActual = $hospedes[$i];
+          $data_criado = $hospedeActual['criado_em'];
+          $dadoscriado = explode('-', $data_criado);
+          $anocriado = $dadoscriado[0];
+          $mescriado = $dadoscriado[1];
+          $diacriado = $dadoscriado[2];
+          $datacriado = "$diacriado/$mescriado/$anocriado";
+        ?>
+          <div class="hospedeImgContainer">
+            <figure class="hospedeImage">
+              <div class="img">
+                <img src="./assets/images/joker.jpg" />
+              </div>
+              <figcaption class="hopedeNameAndProf">
+                <strong><?php echo $hospedeActual['nome'] ?></strong>
+                <span><?php echo $hospedeActual['genero'] ?></span>
+              </figcaption>
+            </figure>
+            <div class="hopedeNQuarto">
+              Chegou aos: <?php echo $datacriado ?>
             </div>
-            <figcaption class="hopedeNameAndProf">
-              <strong>Charlie Puth</strong>
-              <span>Singer</span>
-            </figcaption>
-          </figure>
-          <div class="hopedeNQuarto">
-            Chegou aos: 12/05/2022
           </div>
-        </div>
-        <div class="hospedeImgContainer">
-          <figure class="hospedeImage">
-            <div class="img">
-              <img src="./assets/images/joker.jpg" />
-            </div>
-            <figcaption class="hopedeNameAndProf">
-              <strong>Charlie Puth</strong>
-              <span>Singer</span>
-            </figcaption>
-          </figure>
-          <div class="hopedeNQuarto">
-            Chegou aos: 12/05/2022
-          </div>
-        </div>
-        <div class="hospedeImgContainer">
-          <figure class="hospedeImage">
-            <div class="img">
-              <img src="./assets/images/joker.jpg" />
-            </div>
-            <figcaption class="hopedeNameAndProf">
-              <strong>Charlie Puth</strong>
-              <span>Singer</span>
-            </figcaption>
-          </figure>
-          <div class="hopedeNQuarto">
-            Chegou aos: 12/05/2022
-          </div>
-        </div>
-        <div class="hospedeImgContainer">
-          <figure class="hospedeImage">
-            <div class="img">
-              <img src="./assets/images/joker.jpg" />
-            </div>
-            <figcaption class="hopedeNameAndProf">
-              <strong>Charlie Puth</strong>
-              <span>Singer</span>
-            </figcaption>
-          </figure>
-          <div class="hopedeNQuarto">
-            Chegou aos: 12/05/2022
-          </div>
-        </div>
+        <?php endfor ?>
       </div>
     </div>
     <div class="ultimosPagamentos">

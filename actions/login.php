@@ -15,10 +15,10 @@
 
       echo "<script>window.location = `../index.php`</script>";
     } else {
-      echo "<script>window.location = `../login.html`</script>";
+      echo "<script>window.location = `../login.php`</script>";
     }
   } else{
-    echo "<script>window.location = `../login.html`</script>";
+    echo "<script>window.location = `../login.php`</script>";
   }
 
 ?>

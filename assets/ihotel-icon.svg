@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g id="ihotel-icon" transform="translate(-663 -177)">
+    <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(663 177)" fill="#6f4ec9" stroke="#fff" stroke-width="5">
+      <rect width="120" height="120" rx="60" stroke="none"/>
+      <rect x="2.5" y="2.5" width="115" height="115" rx="57.5" fill="none"/>
+    </g>
+    <g id="local_hotel" transform="translate(829.14 253.777)">
+      <path id="Path_1" data-name="Path 1" d="M24.378,36.171A11.689,11.689,0,1,0,12.689,24.482,11.673,11.673,0,0,0,24.378,36.171ZM71.134,12.793H39.963V40.067H8.793V5H1V63.445H8.793V51.756H78.927V63.445h7.793V28.378A15.581,15.581,0,0,0,71.134,12.793Z" transform="translate(-148 -58)" fill="#fff"/>
+    </g>
+    <path id="Path_2" data-name="Path 2" d="M0,0S8.629,8.177,26.732,8.833,54.227,0,54.227,0" transform="translate(696.5 271.552)" fill="none" stroke="#fff" stroke-width="5"/>
+  </g>
+</svg>

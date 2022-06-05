@@ -1,33 +1,33 @@
 <?php
-  require(__DIR__."/../actions/conexao.php");
-    session_start();
+require(__DIR__ . "/../actions/conexao.php");
+session_start();
 
-    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])){
-      $hospedeID = $_GET['hospede_id'];
+if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+  $hospedeID = $_GET['hospede_id'];
 
-      $query = $conexao->prepare("SELECT * FROM hospedes WHERE id = ?");
+  $query = $conexao->prepare("SELECT * FROM hospedes WHERE id = ?");
 
-      $query->execute(array($hospedeID));
-  
-        if($query->rowCount()){
-          $hospede = $query->fetchAll(PDO::FETCH_ASSOC)[0];
-        }
-      }
-       else {
-        echo "<script>window.location = `../login.html`</script>";
-      }
+  $query->execute(array($hospedeID));
+
+  if ($query->rowCount()) {
+    $hospede = $query->fetchAll(PDO::FETCH_ASSOC)[0];
+  }
+} else {
+  echo "<script>window.location = `../login.php`</script>";
+}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/ihotel-icon.svg" type="image/svg+xml">
   <title>Hospede - <?php echo $hospede['nome'] ?></title>
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -58,11 +58,11 @@
       gap: 1rem;
     }
 
-    .formEditHospede > h1 {
+    .formEditHospede>h1 {
       font-size: 3rem;
     }
 
-    .formEditHospede > input[type="text"] {
+    .formEditHospede>input[type="text"] {
       width: 100%;
       height: 2.5rem;
       padding: 1rem;
@@ -70,7 +70,7 @@
       border: none;
     }
 
-    
+
     .genero {
       display: flex;
       align-items: center;
@@ -79,7 +79,7 @@
       width: 100%;
     }
 
-    .genero > label {
+    .genero>label {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -113,36 +113,64 @@
       margin: 1rem 0;
       border: none;
     }
+
+
+    .pace {
+      -webkit-pointer-events: none;
+      pointer-events: none;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .pace-inactive {
+      display: none;
+    }
+
+    .pace .pace-progress {
+      background: #6f4ec9;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      height: 2px;
+    }
   </style>
 </head>
-<body>
-    <form class="formEditHospede" action="../actions/editHospede.php">
-        <h1>Editando <?php echo $hospede['nome'] ?></h1>
-        <input type="hidden" name="hospede_id" value="<?php echo $hospede['id'] ?>">
-        <input type="text" name="nome" placeholder="Nome Completo" required value="<?php echo $hospede['nome'] ?>">
-        <input type="text" name="telefone" placeholder="Telefone" required value="<?php echo $hospede['contacto'] ?>">
-        <input type="text" name="bi" placeholder="BI" required value="<?php echo $hospede['bi'] ?>">
-        <div class="genero">
-          <label> 
-            <input type="radio" name="genero" value="Masculino" checked> Masculino
-          </label>
-          <label>
-            <input type="radio" name="genero" value="Femenino"> Femenino
-          </label>
-        </div>
-        <select name="tipo_hospede">
-          <?php
-              $query = $conexao->prepare("SELECT * FROM tipos_hospedes");
 
-              $query->execute();
-              $users = $query->fetchAll(PDO::FETCH_ASSOC);
-              for($i = 0; $i < sizeof($users); $i++):
-                $usuarioAtual = $users[$i];
-          ?>
-          <option value=<?php echo $usuarioAtual["id"]?>><?php echo $usuarioAtual['titulo'] ?></option>
-          <?php endfor ?>
-        </select>
-        <button type="submit" class="guardar">Guardar</button>
-    </form>
+<body>
+  <form class="formEditHospede" action="../actions/editHospede.php">
+    <h1>Editando <?php echo $hospede['nome'] ?></h1>
+    <input type="hidden" name="hospede_id" value="<?php echo $hospede['id'] ?>">
+    <input type="text" name="nome" placeholder="Nome Completo" required value="<?php echo $hospede['nome'] ?>">
+    <input type="text" name="telefone" placeholder="Telefone" required value="<?php echo $hospede['contacto'] ?>">
+    <input type="text" name="bi" placeholder="BI" required value="<?php echo $hospede['bi'] ?>">
+    <div class="genero">
+      <label>
+        <input type="radio" name="genero" value="Masculino" checked> Masculino
+      </label>
+      <label>
+        <input type="radio" name="genero" value="Femenino"> Femenino
+      </label>
+    </div>
+    <select name="tipo_hospede">
+      <?php
+      $query = $conexao->prepare("SELECT * FROM tipos_hospedes");
+
+      $query->execute();
+      $users = $query->fetchAll(PDO::FETCH_ASSOC);
+      for ($i = 0; $i < sizeof($users); $i++) :
+        $usuarioAtual = $users[$i];
+      ?>
+        <option value=<?php echo $usuarioAtual["id"] ?>><?php echo $usuarioAtual['titulo'] ?></option>
+      <?php endfor ?>
+    </select>
+    <button type="submit" class="guardar">Guardar</button>
+  </form>
+
+  <script src="../modules/pace.min.js"></script>
 </body>
+
 </html>

@@ -1,45 +1,48 @@
 <?php
-  session_start();
+session_start();
 
-  if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])){
-    $page = isset($_GET['p']) ? $_GET['p'] : 'home';
-    $userID = $_SESSION['usuario'][1];
-    $userName = $_SESSION['usuario'][0];
-  } else {
-    echo "<script>window.location = `login.html`</script>";
-  }
+if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+  $page = isset($_GET['p']) ? $_GET['p'] : 'home';
+  $userID = $_SESSION['usuario'][1];
+  $userName = $_SESSION['usuario'][0];
+} else {
+  echo "<script>window.location = `login.php`</script>";
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./assets/ihotel-icon.svg" type="image/svg+xml">
   <title>IHotel - <?php echo "$userName" ?></title>
   <link rel="stylesheet" href="./styles/main.css">
-  <?php if($page === 'hospedes'): ?>
+  <?php if ($page === 'hospedes') : ?>
     <link rel="stylesheet" href="./styles/hospedes.css">
   <?php endif ?>
-  <?php if($page === 'reservas'): ?>
+  <?php if ($page === 'reservas') : ?>
     <link rel="stylesheet" href="./styles/reservas.css">
   <?php endif ?>
-  <?php if($page === 'quartos'): ?>
+  <?php if ($page === 'quartos') : ?>
     <link rel="stylesheet" href="./styles/quartos.css">
   <?php endif ?>
-  <?php if($page === 'servicos'): ?>
+  <?php if ($page === 'servicos') : ?>
     <link rel="stylesheet" href="./styles/servicos.css">
   <?php endif ?>
-  <?php if($page === 'pagamentos'): ?>
+  <?php if ($page === 'pagamentos') : ?>
     <link rel="stylesheet" href="./styles/pagamentos.css">
   <?php endif ?>
-  <?php if($page === 'funcionarios'): ?>
+  <?php if ($page === 'funcionarios') : ?>
     <link rel="stylesheet" href="./styles/funcionarios.css">
   <?php endif ?>
-  <?php if($page === 'usuarios'): ?>
+  <?php if ($page === 'usuarios') : ?>
     <link rel="stylesheet" href="./styles/usuarios.css">
   <?php endif ?>
 </head>
+
 <body>
   <div id="root">
     <header class="header">
@@ -75,7 +78,7 @@
                     <path d="M16.5 13c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C5.33 13 1 14.08 1 16.25V19h22v-2.75c0-2.17-4.33-3.25-6.5-3.25zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H14v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM7.5 12c1.93 0 3.5-1.57 3.5-3.5S9.43 5 7.5 5 4 6.57 4 8.5 5.57 12 7.5 12zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5c1.93 0 3.5-1.57 3.5-3.5S18.43 5 16.5 5 13 6.57 13 8.5s1.57 3.5 3.5 3.5zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z" fill="#333333">
                     </path>
                   </g>
-              </svg>
+                </svg>
               </span>
               <span class="text">
                 Hospedes
@@ -188,36 +191,36 @@
         </ul>
       </nav>
       <?php
-        switch($page){
-          case 'hospedes':
-            require('./pages/hospedes.php');
-            break;
-          case 'reservas':
-            require('./pages/reservas.php');
-            break;
-          case 'quartos':
-            require('./pages/quartos.php');
-            break;
-          case 'servicos':
-            require('./pages/servicos.php');
-            break;
-          case 'pagamentos':
-            require('./pages/pagamentos.php');
-            break;
-          case 'funcionarios':
-            require('./pages/funcionarios.php');
-            break;
-          case 'usuarios':
-            require('./pages/usuarios.php');
-            break;
-          default:
-            require('./pages/home.php');
-        }
-        
-        ?>
+      switch ($page) {
+        case 'hospedes':
+          require('./pages/hospedes.php');
+          break;
+        case 'reservas':
+          require('./pages/reservas.php');
+          break;
+        case 'quartos':
+          require('./pages/quartos.php');
+          break;
+        case 'servicos':
+          require('./pages/servicos.php');
+          break;
+        case 'pagamentos':
+          require('./pages/pagamentos.php');
+          break;
+        case 'funcionarios':
+          require('./pages/funcionarios.php');
+          break;
+        case 'usuarios':
+          require('./pages/usuarios.php');
+          break;
+        default:
+          require('./pages/home.php');
+      }
 
-</main>
-</div>
+      ?>
+
+    </main>
+  </div>
 
   <script>
     // Apply active class in selected list item
@@ -225,66 +228,68 @@
     const selectedItem = document.getElementById(selectedPage);
 
     selectedItem.classList.add('active');
-  /**
-    let list = document.querySelectorAll('.listItem');
-    const url = new URL(location);
-    console.log(url);
-    for(let i = 0; i < list.length; i++) {
-      list[i].onclick = function() {
-        let j = 0;
-        while(j < list.length){
-          list[j++].className = 'listItem';
+    /**
+      let list = document.querySelectorAll('.listItem');
+      const url = new URL(location);
+      console.log(url);
+      for(let i = 0; i < list.length; i++) {
+        list[i].onclick = function() {
+          let j = 0;
+          while(j < list.length){
+            list[j++].className = 'listItem';
+          }
+          list[i].className = 'listItem active';
         }
-        list[i].className = 'listItem active';
       }
-    }
-  **/ 
-
+    **/
   </script>
-  <script src="./modules/chart.js"></script>
 
-  <?php if($page === 'home' ): ?>
-  <script>
-    const ctx = document.getElementById('myChart');
+  <?php if ($page === 'home') : ?>
+    <script src="./modules/chart.js"></script>
 
-    const labels = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro'
-    ];
+    <script>
+      const ctx = document.getElementById('myChart');
 
-    const data = {
-      labels,
-      datasets: [{
-        data: [211, 299, 189, 344, 411, 377, 499, 389, 421, 333, 233, 502],
-        label: "Total De Reservas",
-        fill: false,
-        backgroundColor: '#6f4ec9',
-        borderColor: '#6f4ec9'
-      }]
-    }
+      const labels = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+      ];
 
-    const config = {
-      type: 'line',
-      data,
-      options: {
-        responsive: true,
-        radius: 4,
-        hoverRadius: 10
+      const data = {
+        labels,
+        datasets: [{
+          data: [211, 299, 189, 344, 411, 377, 499, 389, 421, 333, 233, 502],
+          label: "Total De Reservas",
+          fill: false,
+          backgroundColor: '#6f4ec9',
+          borderColor: '#6f4ec9'
+        }]
       }
-    }
 
-    const myChart = new Chart(ctx, config);
-  </script>
+      const config = {
+        type: 'line',
+        data,
+        options: {
+          responsive: true,
+          radius: 4,
+          hoverRadius: 10
+        }
+      }
+
+      const myChart = new Chart(ctx, config);
+    </script>
   <?php endif ?>
+  <script src="./modules/pace.min.js"></script>
 </body>
+
 </html>

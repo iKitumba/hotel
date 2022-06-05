@@ -1,33 +1,33 @@
 <?php
-  require(__DIR__."/../actions/conexao.php");
-    session_start();
+require(__DIR__ . "/../actions/conexao.php");
+session_start();
 
-    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])){
-      $username = $_GET['username'];
+if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+  $username = $_GET['username'];
 
-      $query = $conexao->prepare("SELECT * FROM usuarios WHERE username = ?");
+  $query = $conexao->prepare("SELECT * FROM usuarios WHERE username = ?");
 
-      $query->execute(array($username));
-  
-        if($query->rowCount()){
-          $usuario = $query->fetchAll(PDO::FETCH_ASSOC)[0];
-        }
-      }
-       else {
-        echo "<script>window.location = `../login.html`</script>";
-      }
+  $query->execute(array($username));
+
+  if ($query->rowCount()) {
+    $usuario = $query->fetchAll(PDO::FETCH_ASSOC)[0];
+  }
+} else {
+  echo "<script>window.location = `../login.php`</script>";
+}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/ihotel-icon.svg" type="image/svg+xml">
   <title>Usuário - <?php echo $usuario['username'] ?></title>
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -58,7 +58,7 @@
       gap: 1rem;
     }
 
-    .formEditUsuario > h1 {
+    .formEditUsuario>h1 {
       font-size: 3rem;
       align-self: flex-start;
     }
@@ -71,7 +71,8 @@
       color: #999999;
     }
 
-    input[type="text"], input[type="password"] {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
       height: 2.5rem;
       padding: 1rem;
@@ -79,13 +80,13 @@
       border: 2px solid #6f4ec9;
     }
 
-  .tipo_usuario_funcionario_id {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
+    .tipo_usuario_funcionario_id {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
 
     .tipo_usuario_funcionario_id select {
       display: flex;
@@ -115,46 +116,72 @@
       border: none;
     }
 
+    .pace {
+      -webkit-pointer-events: none;
+      pointer-events: none;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .pace-inactive {
+      display: none;
+    }
+
+    .pace .pace-progress {
+      background: #6f4ec9;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      height: 2px;
+    }
   </style>
 </head>
+
 <body>
-    <form class="formEditUsuario" action="../actions/editUsuario.php">
-        <h1>Editando #<?php echo $usuario['username'] ?></h1>
-          <input type="hidden" name="usuario_id" value="<?php echo $usuario['id'] ?>">
-        <label> Edite username
-          <input type="text" name="username" value="<?php echo $usuario['username'] ?>">
-        </label>
-        <label> Edite senha
-          <input type="password" name="password" value="<?php echo $usuario['password'] ?>">
-        </label>
-        <div class="tipo_usuario_funcionario_id">       
-        <select name="tipo_usuario">
-            <?php
-                $fetchTiposUsuarios = $conexao->prepare("SELECT * FROM tipos_usuarios");
+  <form class="formEditUsuario" action="../actions/editUsuario.php">
+    <h1>Editando #<?php echo $usuario['username'] ?></h1>
+    <input type="hidden" name="usuario_id" value="<?php echo $usuario['id'] ?>">
+    <label> Edite username
+      <input type="text" name="username" value="<?php echo $usuario['username'] ?>">
+    </label>
+    <label> Edite senha
+      <input type="password" name="password" value="<?php echo $usuario['password'] ?>">
+    </label>
+    <div class="tipo_usuario_funcionario_id">
+      <select name="tipo_usuario">
+        <?php
+        $fetchTiposUsuarios = $conexao->prepare("SELECT * FROM tipos_usuarios");
 
-                $fetchTiposUsuarios->execute();
-                $types = $fetchTiposUsuarios->fetchAll(PDO::FETCH_ASSOC);
-                for($i = 0; $i < sizeof($types); $i++):
-                  $tipoAtual = $types[$i];
-            ?>
-            <option value=<?php echo $tipoAtual["id"]?>><?php echo $tipoAtual['titulo'] ?></option>
-            <?php endfor ?>
-          </select>
-          <select name="funcionario_id">
-            <?php
-                $fetchFuncionarios = $conexao->prepare("SELECT * FROM funcionarios");
+        $fetchTiposUsuarios->execute();
+        $types = $fetchTiposUsuarios->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < sizeof($types); $i++) :
+          $tipoAtual = $types[$i];
+        ?>
+          <option value=<?php echo $tipoAtual["id"] ?>><?php echo $tipoAtual['titulo'] ?></option>
+        <?php endfor ?>
+      </select>
+      <select name="funcionario_id">
+        <?php
+        $fetchFuncionarios = $conexao->prepare("SELECT * FROM funcionarios");
 
-                $fetchFuncionarios->execute();
-                $funcionarios = $fetchFuncionarios->fetchAll(PDO::FETCH_ASSOC);
-                for($i = 0; $i < sizeof($funcionarios); $i++):
-                  $funcionarioAtual = $funcionarios[$i];
-            ?>
-            <option value=<?php echo $funcionarioAtual["id"]?>><?php echo $funcionarioAtual['nome'] ?></option>
-            <?php endfor ?>
-          </select>        
-        </div>
+        $fetchFuncionarios->execute();
+        $funcionarios = $fetchFuncionarios->fetchAll(PDO::FETCH_ASSOC);
+        for ($i = 0; $i < sizeof($funcionarios); $i++) :
+          $funcionarioAtual = $funcionarios[$i];
+        ?>
+          <option value=<?php echo $funcionarioAtual["id"] ?>><?php echo $funcionarioAtual['nome'] ?></option>
+        <?php endfor ?>
+      </select>
+    </div>
 
-        <button type="submit" class="guardar">Guardar</button>
-    </form>
+    <button type="submit" class="guardar">Guardar</button>
+  </form>
+
+  <script src="../modules/pace.min.js"></script>
 </body>
+
 </html>

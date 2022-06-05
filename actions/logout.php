@@ -3,5 +3,5 @@
 
   session_destroy();
 
-  echo "<script>window.location = `../login.html`</script>";
+  echo "<script>window.location = `../login.php`</script>";
 ?>
