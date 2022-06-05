@@ -1,2 +1,2 @@
 # Ihotel
-Sistema de gestão de Hoteleiro (Trabalho escolar)
+Sistema de gestão de Hotel (Trabalho escolar)
